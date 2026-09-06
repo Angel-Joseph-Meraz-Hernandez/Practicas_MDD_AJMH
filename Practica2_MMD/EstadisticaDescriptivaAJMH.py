@@ -4,7 +4,6 @@
 #Matricula: 2067151
 
 import pandas as pd
-import matplotlib.pyplot as plt
 
 def estadistica_descrip(df):
     print("\nDescripcion generica de los datos:")
@@ -29,7 +28,7 @@ def estadistica_descrip(df):
     print("Kurtosis:", df["PrecioUnitario"].kurt())
 
 
-def diagr_metric_dagrupados(df):
+def metricas_datos_grupados(df):
     print("\nMetricas agrupadas por articulo:")
     """
     Las columnas representanta:
@@ -94,71 +93,6 @@ def diagr_metric_dagrupados(df):
 
     print(metricas_cliente.head(10))
 
-    
-    print("\nDiagrama de relaciones")
-
-    fig, ax = plt.subplots(figsize=(12, 7))
-
-    ax.axis("off")
-
-    #Entidades
-    ax.text(
-        0.15, 0.70,
-        "CLIENTE\n\nIDCliente\nPais",
-        ha="center",
-        va="center",
-        fontsize=12,
-        bbox=dict(boxstyle="round,pad=1", facecolor="lightblue")
-    )
-
-    ax.text(
-        0.50, 0.70,
-        "FACTURA\n\nIDFactura\nFechaCompra",
-        ha="center",
-        va="center",
-        fontsize=12,
-        bbox=dict(boxstyle="round,pad=1", facecolor="lightgreen")
-    )
-
-    ax.text(
-        0.85, 0.70,
-        "ARTICULO\n\nIDArticulo\nDescripcion\nPrecioUnitario",
-        ha="center",
-        va="center",
-        fontsize=12,
-        bbox=dict(boxstyle="round,pad=1", facecolor="lightyellow")
-    )
-
-
-    #Relaciones
-    ax.annotate(
-        "realiza",
-        xy=(0.40, 0.70),
-        xytext=(0.25, 0.70),
-        arrowprops=dict(arrowstyle="->", lw=2),
-        ha="center",
-        va="bottom"
-    )
-
-    ax.annotate(
-        "contiene",
-        xy=(0.75, 0.70),
-        xytext=(0.60, 0.70),
-        arrowprops=dict(arrowstyle="->", lw=2),
-        ha="center",
-        va="bottom"
-    )
-
-    ax.set_title(
-        "Diagrama de Entidades y Relaciones - Online Retail",
-        fontsize=16
-    )
-
-    plt.savefig("diagrama_entidades_relaciones.png")
-    plt.close()
-
-    print("Diagrama guardado como: diagrama_entidades_relaciones.png")
-
 
 #Programa principal
 df = pd.read_csv("online_retail_limpio.csv")
@@ -221,7 +155,7 @@ if not df.empty:
     print("\nLa relacion entre Factura y Articulo es de muchos a muchos.\nLa relacion entre Factura y Cliente es de uno a muchos.")
 
     
-    diagr_metric_dagrupados(df)
+    metricas_datos_grupados(df)
 
 
 else:
@@ -349,6 +283,4 @@ IDCliente Pais                                    ...
 
 [10 rows x 4 columns]
 
-Diagrama de relaciones
-Diagrama guardado como: diagrama_entidades_relaciones.png
 """
